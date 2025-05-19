@@ -39,9 +39,9 @@ pipeline {
                             --out \'./\'  
                             --format \'ALL\' 
                             --disableYarnAudit \
-                            --data /tmp/data \
-                            --prettyPrint''', odcInstallation: 'OWASP-DepCheck-10'
-                        dependencyCheckPublisher failedTotalCritical: 1, pattern: 'dependency-check-report.xml', stopBuild: true
+                            --data /var/lib/jenkins/owasp-db/data/ \
+                            --prettyPrint''', odcInstallation: 'OWASP-DepCheck-12'
+                        dependencyCheckPublisher failedTotalMedium: 1, failedTotalLow: 1, failedTotalHigh: 1, pattern: 'dependency-check-report.xml', stopBuild: true
                         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-jenkins.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                     }
                 }
